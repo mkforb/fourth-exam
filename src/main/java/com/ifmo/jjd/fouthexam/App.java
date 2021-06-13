@@ -1,6 +1,7 @@
-package com.ifmo.jjd.fouthexam.entity;
+package com.ifmo.jjd.fouthexam;
 
 import com.ifmo.jjd.fouthexam.dao.MountainDao;
+import com.ifmo.jjd.fouthexam.entity.Mountain;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
