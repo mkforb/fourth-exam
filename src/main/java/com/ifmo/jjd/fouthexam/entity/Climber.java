@@ -2,6 +2,7 @@ package com.ifmo.jjd.fouthexam.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import java.util.UUID;
  */
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "tb_climber")
 public class Climber extends Parent {

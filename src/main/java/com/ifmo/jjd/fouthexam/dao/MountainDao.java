@@ -4,6 +4,7 @@ import com.ifmo.jjd.fouthexam.entity.Mountain;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -28,8 +29,7 @@ public class MountainDao implements Dao<Mountain, Integer> {
 
     @Override
     public List<Mountain> getAll() {
-        Query query = manager.createQuery("SELECT m FROM Mountain m", Mountain.class);
-        return query.getResultList();
+        return manager.createQuery("SELECT m FROM Mountain m", Mountain.class).getResultList();
     }
 
     @Override
@@ -40,5 +40,12 @@ public class MountainDao implements Dao<Mountain, Integer> {
     @Override
     public void deleteByPK(Integer integer) {
 
+    }
+
+    public List<Mountain> getByHeight(int min, int max) {
+        TypedQuery<Mountain> query = manager.createQuery("SELECT m FROM Mountain m WHERE height BETWEEN :min AND :max", Mountain.class)
+                .setParameter("min", min)
+                .setParameter("max", max);
+        return query.getResultList();
     }
 }
