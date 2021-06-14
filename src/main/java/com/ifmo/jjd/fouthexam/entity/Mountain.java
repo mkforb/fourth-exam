@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_mountain")
 public class Mountain extends Parent {
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private int height;
 }

@@ -4,6 +4,7 @@ import com.ifmo.jjd.fouthexam.entity.Climber;
 import com.ifmo.jjd.fouthexam.entity.Mountain;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -43,6 +44,11 @@ public class ClimberDao implements Dao<Climber, Integer> {
         TypedQuery<Climber> query = manager.createQuery("SELECT c FROM Climber c WHERE fullName = :fullName AND email = :email", Climber.class)
                 .setParameter("fullName", fullName)
                 .setParameter("email", email);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Climber not found");
+        }
+        return null;
     }
 }

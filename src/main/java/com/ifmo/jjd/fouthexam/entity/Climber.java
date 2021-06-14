@@ -21,7 +21,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "tb_climber")
 public class Climber extends Parent {
-    @Column
+    @Column(nullable = false)
     private String fullName;
     @Column
     private int age;

@@ -3,6 +3,7 @@ package com.ifmo.jjd.fouthexam.dao;
 import com.ifmo.jjd.fouthexam.entity.Mountain;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -47,5 +48,16 @@ public class MountainDao implements Dao<Mountain, Integer> {
                 .setParameter("min", min)
                 .setParameter("max", max);
         return query.getResultList();
+    }
+
+    public Mountain getByName(String name) {
+        TypedQuery<Mountain> query = manager.createQuery("SELECT m FROM Mountain m WHERE name = :name", Mountain.class)
+                .setParameter("name", name);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Mountain not found");
+        }
+        return null;
     }
 }

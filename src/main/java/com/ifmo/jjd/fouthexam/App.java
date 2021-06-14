@@ -55,6 +55,7 @@ public class App {
 
         System.out.println(mountainDao.getByHeight(5000, 6000));
         System.out.println(climbingGroupDao.getNotStarted());
-        System.out.println(climberDao.getByFullNameEmail("Василий1", "test@test.ru"));
+        System.out.println(climberDao.getByFullNameEmail("Василий", "test@test.ru"));
+        System.out.println(mountainDao.getByName("Everest1"));
     }
 }
