@@ -25,7 +25,7 @@ public class Climber extends Parent {
     private String fullName;
     @Column
     private int age;
-    @Column
+    @Column(nullable = false)
     private String email;
     @Column
     private UUID uuid;

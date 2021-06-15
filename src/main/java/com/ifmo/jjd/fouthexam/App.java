@@ -27,35 +27,52 @@ public class App {
         Climber climber1 = new Climber();
         climber1.setFullName("Василий");
         climber1.setAge(23);
-        climber1.setEmail("test@test.ru");
+        climber1.setEmail("vasiliy@test.ru");
         climber1.setUuid(UUID.randomUUID());
 
-        List<Climber> climbers = new ArrayList<>();
-        climbers.add(climber1);
+        Climber climber2 = new Climber();
+        climber2.setFullName("Петр");
+        climber2.setAge(32);
+        climber2.setEmail("petr@test.ru");
+        climber2.setUuid(UUID.randomUUID());
 
-        Mountain mountain1 = new Mountain();
-        mountain1.setName("Elbrus");
-        mountain1.setHeight(5600);
+        Mountain mountainElbrus = new Mountain();
+        mountainElbrus.setName("Эльбрус");
+        mountainElbrus.setHeight(5600);
 
-        Mountain mountain2 = new Mountain();
-        mountain2.setName("Everest");
-        mountain2.setHeight(8600);
+        Mountain mountainEverest = new Mountain();
+        mountainEverest.setName("Эверест");
+        mountainEverest.setHeight(8800);
 
-        ClimbingGroup group = new ClimbingGroup();
-        group.setMountain(mountain1);
-        group.setStart(LocalDateTime.of(2021, 6, 15, 10, 0));
-        group.setClimbers(climbers);
+        List<Climber> climbers1 = new ArrayList<>();
+        climbers1.add(climber1);
+        climbers1.add(climber2);
+
+        ClimbingGroup group1 = new ClimbingGroup();
+        group1.setMountain(mountainElbrus);
+        group1.setStart(LocalDateTime.of(2021, 6, 20, 10, 0));
+        group1.setClimbers(climbers1);
+
+        List<Climber> climbers2 = new ArrayList<>();
+        climbers2.add(climber2);
+
+        ClimbingGroup group2 = new ClimbingGroup();
+        group2.setMountain(mountainEverest);
+        group2.setStart(LocalDateTime.of(2021, 6, 15, 10, 0));
+        group2.setClimbers(climbers2);
 
         manager.getTransaction().begin();
         climberDao.add(climber1);
-        mountainDao.add(mountain1);
-        mountainDao.add(mountain2);
-        climbingGroupDao.add(group);
+        climberDao.add(climber2);
+        mountainDao.add(mountainElbrus);
+        mountainDao.add(mountainEverest);
+        climbingGroupDao.add(group1);
+        climbingGroupDao.add(group2);
         manager.getTransaction().commit();
 
         System.out.println(mountainDao.getByHeight(5000, 6000));
         System.out.println(climbingGroupDao.getNotStarted());
-        System.out.println(climberDao.getByFullNameEmail("Василий", "test@test.ru"));
-        System.out.println(mountainDao.getByName("Everest1"));
+        System.out.println(climberDao.getByFullNameEmail("Василий", "vasiliy@test.ru"));
+        System.out.println(mountainDao.getByName("Эверест"));
     }
 }

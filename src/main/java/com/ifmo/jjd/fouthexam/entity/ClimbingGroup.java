@@ -19,7 +19,6 @@ import java.util.List;
 @Table(name = "tb_climbing_group")
 public class ClimbingGroup extends Parent {
     @ManyToOne
-    @JoinColumn
     private Mountain mountain;
     @Column
     private LocalDateTime start;
